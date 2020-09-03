@@ -64,17 +64,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\WorkersDbModel.Context.cs">
+    <Compile Include="Models\tblEvidention.cs">
+      <DependentUpon>WorkerDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblLocation.cs">
+      <DependentUpon>WorkerDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSector.cs">
+      <DependentUpon>WorkerDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblWorker.cs">
+      <DependentUpon>WorkerDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwWorker.cs">
+      <DependentUpon>WorkerDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkerDbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WorkersDbModel.Context.tt</DependentUpon>
+      <DependentUpon>WorkerDbModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WorkersDbModel.Designer.cs">
+    <Compile Include="Models\WorkerDbModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WorkersDbModel.edmx</DependentUpon>
+      <DependentUpon>WorkerDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkerDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkerDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AddNewWorkerViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\UpdateCurrentWorkerViewModel.cs" />
+    <Compile Include="Views\AddNewWorker.xaml.cs">
+      <DependentUpon>AddNewWorker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateCurrentWorker.xaml.cs">
+      <DependentUpon>UpdateCurrentWorker.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -88,6 +117,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddNewWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateCurrentWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -107,12 +144,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\WorkersDbModel.edmx">
+    <EntityDeploy Include="Models\WorkerDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WorkersDbModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>WorkerDbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\WorkersDbModel.edmx.diagram">
-      <DependentUpon>WorkersDbModel.edmx</DependentUpon>
+    <None Include="Models\WorkerDbModel.edmx.diagram">
+      <DependentUpon>WorkerDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -124,16 +161,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\WorkersDbModel.Context.tt">
+    <Content Include="Models\WorkerDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>WorkersDbModel.Context.cs</LastGenOutput>
+      <DependentUpon>WorkerDbModel.edmx</DependentUpon>
+      <LastGenOutput>WorkerDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\WorkerDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WorkerDbModel.edmx</DependentUpon>
+      <LastGenOutput>WorkerDbModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Log.txt" />
+    <Resource Include="Locations.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7e88083e5f74fb1970d357b9f57dbcf" Name="Diagram1">
+        <EntityTypeShape EntityType="WorkersDbModel.tblEvidention" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkersDbModel.tblLocation" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkersDbModel.tblSector" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkersDbModel.tblWorker" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkersDbModel.vwWorker" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="WorkersDbModel.FK__tblWorker__FKLoc__18B6AB08" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkersDbModel.FK__tblWorker__FKSec__17C286CF" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkersDbModel.FK__tblWorker__FKMan__19AACF41" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WorkersDbModelStoreContainer" CdmEntityContainer="WorkersDbEntities">
+    <EntitySetMapping Name="tblEvidentions">
+      <EntityTypeMapping TypeName="WorkersDbModel.tblEvidention">
+        <MappingFragment StoreEntitySet="tblEvidentions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLocations">
+      <EntityTypeMapping TypeName="WorkersDbModel.tblLocation">
+        <MappingFragment StoreEntitySet="tblLocations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSectors">
+      <EntityTypeMapping TypeName="WorkersDbModel.tblSector">
+        <MappingFragment StoreEntitySet="tblSectors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblWorkers">
+      <EntityTypeMapping TypeName="WorkersDbModel.tblWorker">
+        <MappingFragment StoreEntitySet="tblWorkers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="IDCardNumber" ColumnName="IDCardNumber" />
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="FKSector" ColumnName="FKSector" />
+          <ScalarProperty Name="FKLocation" ColumnName="FKLocation" />
+          <ScalarProperty Name="FKManager" ColumnName="FKManager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwWorkers">
+      <EntityTypeMapping TypeName="WorkersDbModel.vwWorker">
+        <MappingFragment StoreEntitySet="vwWorker">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="IDCardNumber" ColumnName="IDCardNumber" />
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="FKManager" ColumnName="FKManager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

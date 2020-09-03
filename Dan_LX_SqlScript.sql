@@ -5,8 +5,6 @@ GO
 USE WorkersDb
 IF EXISTS (SELECT NAME FROM sys.sysobjects WHERE NAME = 'tblWorkers')
 DROP TABLE tblWorkers
-IF EXISTS (SELECT NAME FROM sys.sysobjects WHERE NAME = 'tblGenders')
-DROP TABLE tblGenders
 IF EXISTS (SELECT NAME FROM sys.sysobjects WHERE NAME = 'tblLocations')
 DROP TABLE tblLocations
 IF EXISTS (SELECT NAME FROM sys.sysobjects WHERE NAME = 'tblSectors')
@@ -51,10 +49,10 @@ GO
 CREATE VIEW vwWorker
 AS
 SELECT tblWorkers.Id, tblWorkers.Name, tblWorkers.Surname, tblWorkers.DateOfBirth, tblWorkers.IDCardNumber,
-tblWorkers.JMBG, tblGenders.Gender, tblWorkers.PhoneNumber, tblSectors.Sector,tblLocations.Address,
+tblWorkers.JMBG,tblWorkers.Gender, tblWorkers.PhoneNumber, tblSectors.Sector,tblLocations.Address,
 tblLocations.City, tblLocations.Country, tblWorkers.FKManager
-FROM tblWorkers, tblSectors, tblLocations, tblGenders
-WHERE tblWorkers.FKGender = tblGenders.Id AND tblWorkers.FKLocation = tblLocations.Id AND
+FROM tblWorkers, tblSectors, tblLocations
+WHERE tblWorkers.FKLocation = tblLocations.Id AND
 tblWorkers.FKSector = tblSectors.Id;
 
 

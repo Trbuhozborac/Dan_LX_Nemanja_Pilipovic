@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkersDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblEvidention">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Project" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Hours" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblLocation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblWorkers" Relationship="Self.FK__tblWorker__FKLoc__18B6AB08" FromRole="tblLocations" ToRole="tblWorkers" />
+  </EntityType>
+  <EntityType Name="tblSector">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sector" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblWorkers" Relationship="Self.FK__tblWorker__FKSec__17C286CF" FromRole="tblSectors" ToRole="tblWorkers" />
+  </EntityType>
+  <EntityType Name="tblWorker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="IDCardNumber" Type="Int32" />
+    <Property Name="JMBG" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="Int32" />
+    <Property Name="FKSector" Type="Int32" />
+    <Property Name="FKLocation" Type="Int32" />
+    <Property Name="FKManager" Type="Int32" />
+    <NavigationProperty Name="tblLocation" Relationship="Self.FK__tblWorker__FKLoc__18B6AB08" FromRole="tblWorkers" ToRole="tblLocations" />
+    <NavigationProperty Name="tblSector" Relationship="Self.FK__tblWorker__FKSec__17C286CF" FromRole="tblWorkers" ToRole="tblSectors" />
+    <NavigationProperty Name="tblWorkers1" Relationship="Self.FK__tblWorker__FKMan__19AACF41" FromRole="tblWorkers" ToRole="tblWorkers1" />
+    <NavigationProperty Name="tblWorker1" Relationship="Self.FK__tblWorker__FKMan__19AACF41" FromRole="tblWorkers1" ToRole="tblWorkers" />
+  </EntityType>
+  <EntityType Name="vwWorker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="IDCardNumber" Type="Int32" />
+    <Property Name="JMBG" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="Int32" />
+    <Property Name="Sector" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="FKManager" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__tblWorker__FKLoc__18B6AB08">
+    <End Role="tblLocations" Type="Self.tblLocation" Multiplicity="0..1" />
+    <End Role="tblWorkers" Type="Self.tblWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLocations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblWorkers">
+        <PropertyRef Name="FKLocation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblWorker__FKSec__17C286CF">
+    <End Role="tblSectors" Type="Self.tblSector" Multiplicity="0..1" />
+    <End Role="tblWorkers" Type="Self.tblWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSectors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblWorkers">
+        <PropertyRef Name="FKSector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblWorker__FKMan__19AACF41">
+    <End Role="tblWorkers" Type="Self.tblWorker" Multiplicity="0..1" />
+    <End Role="tblWorkers1" Type="Self.tblWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblWorkers1">
+        <PropertyRef Name="FKManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WorkersDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblEvidentions" EntityType="Self.tblEvidention" />
+    <EntitySet Name="tblLocations" EntityType="Self.tblLocation" />
+    <EntitySet Name="tblSectors" EntityType="Self.tblSector" />
+    <EntitySet Name="tblWorkers" EntityType="Self.tblWorker" />
+    <EntitySet Name="vwWorkers" EntityType="Self.vwWorker" />
+    <AssociationSet Name="FK__tblWorker__FKLoc__18B6AB08" Association="Self.FK__tblWorker__FKLoc__18B6AB08">
+      <End Role="tblLocations" EntitySet="tblLocations" />
+      <End Role="tblWorkers" EntitySet="tblWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblWorker__FKSec__17C286CF" Association="Self.FK__tblWorker__FKSec__17C286CF">
+      <End Role="tblSectors" EntitySet="tblSectors" />
+      <End Role="tblWorkers" EntitySet="tblWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblWorker__FKMan__19AACF41" Association="Self.FK__tblWorker__FKMan__19AACF41">
+      <End Role="tblWorkers" EntitySet="tblWorkers" />
+      <End Role="tblWorkers1" EntitySet="tblWorkers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
