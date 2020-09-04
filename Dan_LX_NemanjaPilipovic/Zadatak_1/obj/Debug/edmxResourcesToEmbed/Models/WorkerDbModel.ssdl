@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkersDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblEvidentions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Project" Type="varchar" MaxLength="30" />
+    <Property Name="Position" Type="varchar" MaxLength="30" />
+    <Property Name="Hours" Type="int" />
+  </EntityType>
+  <EntityType Name="tblLocations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="City" Type="varchar" MaxLength="30" />
+    <Property Name="Country" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="tblSectors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sector" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="tblWorkers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="IDCardNumber" Type="int" />
+    <Property Name="JMBG" Type="char" MaxLength="13" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="PhoneNumber" Type="int" />
+    <Property Name="FKSector" Type="int" />
+    <Property Name="FKLocation" Type="int" />
+    <Property Name="FKManager" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkersDb.dbo.vwWorker' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwWorker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="IDCardNumber" Type="int" />
+    <Property Name="JMBG" Type="char" MaxLength="13" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="PhoneNumber" Type="int" />
+    <Property Name="Sector" Type="nvarchar" MaxLength="30" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="City" Type="varchar" MaxLength="30" />
+    <Property Name="Country" Type="varchar" MaxLength="30" />
+    <Property Name="FKManager" Type="int" />
+  </EntityType>
+  <Association Name="FK__tblWorker__FKLoc__18B6AB08">
+    <End Role="tblLocations" Type="Self.tblLocations" Multiplicity="0..1" />
+    <End Role="tblWorkers" Type="Self.tblWorkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLocations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblWorkers">
+        <PropertyRef Name="FKLocation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblWorker__FKMan__19AACF41">
+    <End Role="tblWorkers" Type="Self.tblWorkers" Multiplicity="0..1" />
+    <End Role="tblWorkers1" Type="Self.tblWorkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblWorkers1">
+        <PropertyRef Name="FKManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblWorker__FKSec__17C286CF">
+    <End Role="tblSectors" Type="Self.tblSectors" Multiplicity="0..1" />
+    <End Role="tblWorkers" Type="Self.tblWorkers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSectors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblWorkers">
+        <PropertyRef Name="FKSector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WorkersDbModelStoreContainer">
+    <EntitySet Name="tblEvidentions" EntityType="Self.tblEvidentions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLocations" EntityType="Self.tblLocations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSectors" EntityType="Self.tblSectors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWorkers" EntityType="Self.tblWorkers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vwWorker" EntityType="Self.vwWorker" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwWorker].[Id] AS [Id], 
+    [vwWorker].[Name] AS [Name], 
+    [vwWorker].[Surname] AS [Surname], 
+    [vwWorker].[DateOfBirth] AS [DateOfBirth], 
+    [vwWorker].[IDCardNumber] AS [IDCardNumber], 
+    [vwWorker].[JMBG] AS [JMBG], 
+    [vwWorker].[Gender] AS [Gender], 
+    [vwWorker].[PhoneNumber] AS [PhoneNumber], 
+    [vwWorker].[Sector] AS [Sector], 
+    [vwWorker].[Address] AS [Address], 
+    [vwWorker].[City] AS [City], 
+    [vwWorker].[Country] AS [Country], 
+    [vwWorker].[FKManager] AS [FKManager]
+    FROM [dbo].[vwWorker] AS [vwWorker]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tblWorker__FKLoc__18B6AB08" Association="Self.FK__tblWorker__FKLoc__18B6AB08">
+      <End Role="tblLocations" EntitySet="tblLocations" />
+      <End Role="tblWorkers" EntitySet="tblWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblWorker__FKMan__19AACF41" Association="Self.FK__tblWorker__FKMan__19AACF41">
+      <End Role="tblWorkers" EntitySet="tblWorkers" />
+      <End Role="tblWorkers1" EntitySet="tblWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblWorker__FKSec__17C286CF" Association="Self.FK__tblWorker__FKSec__17C286CF">
+      <End Role="tblSectors" EntitySet="tblSectors" />
+      <End Role="tblWorkers" EntitySet="tblWorkers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
